@@ -1,7 +1,7 @@
 <template>
     <div>
          <b-row>
-        <b-col xs="12" sm="12" md="6" lg="6" class="my-1">
+        <b-col xs="12" sm="12" md="6" lg="6" class="my-1">       
           <b-form-group
             label="Filtro"
             label-cols-sm="3"
@@ -59,7 +59,11 @@
             :busy="isBusy"
             :items="listaDeJogos"
             :per-page="porPagina"
-            :filter="filtro"            
+            :filter="filtro"     
+            :fields="fields"
+            :sort-by.sync="sortBy"
+            :sort-desc.sync="sortDesc"
+            sort-icon-left   
           >
             <template v-slot:table-busy>
               <div class="text-center text-danger my-2">
@@ -87,6 +91,17 @@ export default {
             porPagina: 5,
             pageOptions: [5, 10, 15],
             paginaAtual: 1,
+             sortBy: '',
+            sortDesc: false,
+            fields: [
+                {key: "id", sortable: true},
+                {key: "placar", sortable: true},
+                {key: "minimoTemporada", sortable: true},
+                {key: "maximoTemporada", sortable: true},
+                {key:"quebraRecordeMin", sortable: true},
+                {key:"quebraRecordeMax", sortable: true}
+            ]
+            
         }
     },
     computed: {
