@@ -9,14 +9,14 @@ namespace PublicaDesafioBackend.Models
     {
         public int ID { get; set; }
 
-        public ushort Placar { get; set; }
+        public short Placar { get; set; }
 
-        public ushort MinimoTemporada { get; set; }
+        public short MinimoTemporada { get; set; }
 
-        public ushort MaximoTemporada { get; set; }
+        public short MaximoTemporada { get; set; }
 
-        public ushort QuebraRecordeMin { get; set; }
+        public short QuebraRecordeMin { get; set; }
 
-        public ushort QuebraRecordeMax { get; set; }
+        public short QuebraRecordeMax { get; set; }
     }
 }

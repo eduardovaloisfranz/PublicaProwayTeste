@@ -13,11 +13,11 @@ namespace PublicaDesafioBackend.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Placar = table.Column<ushort>(nullable: false),
-                    MinimoTemporada = table.Column<ushort>(nullable: false),
-                    MaximoTemporada = table.Column<ushort>(nullable: false),
-                    QuebraRecordeMin = table.Column<ushort>(nullable: false),
-                    QuebraRecordeMax = table.Column<ushort>(nullable: false)
+                    Placar = table.Column<short>(nullable: false),
+                    MinimoTemporada = table.Column<short>(nullable: false),
+                    MaximoTemporada = table.Column<short>(nullable: false),
+                    QuebraRecordeMin = table.Column<short>(nullable: false),
+                    QuebraRecordeMax = table.Column<short>(nullable: false)
                 },
                 constraints: table =>
                 {

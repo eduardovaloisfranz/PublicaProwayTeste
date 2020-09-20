@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PublicaDesafioBackend.Models;
+using PublicaDesafioBackend.Util;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,11 +35,17 @@ namespace PublicaDesafioBackend.Controllers
         {
             try
             {
-                _ctx.Jogos.Add(jogo);
-                _ctx.SaveChanges();
-                if (jogo.ID == 1)
+                if(jogo.Placar <= 0 || jogo.Placar > 1000)
                 {
-                    Jogo jog = _ctx.Jogos.Find(1);
+                    return BadRequest("Placar invalido");
+                }
+                _ctx.Jogos.Add(jogo);
+                _ctx.SaveChanges();                
+                if(_ctx.Jogos.Count() == 1)
+                {
+                    Jogo firstGame = _ctx.Jogos.FirstOrDefault<Jogo>();
+                    //int firstId = 
+                    Jogo jog = _ctx.Jogos.Find(firstGame.ID);
                     jog.MinimoTemporada = jog.Placar;
                     jog.MaximoTemporada = jog.Placar;
                     jog.QuebraRecordeMin = 0;
@@ -46,8 +53,8 @@ namespace PublicaDesafioBackend.Controllers
                     _ctx.SaveChanges();
                 }
                 else
-                {
-                    Jogo jogoAnterior = _ctx.Jogos.Find(jogo.ID - 1);
+                {                    
+                    Jogo jogoAnterior = Util.Util.getPreviousValidGame(_ctx, jogo);          
                     if (jogo.Placar < jogoAnterior.MinimoTemporada)
                     {
                         jogo.MinimoTemporada = jogo.Placar;
@@ -76,9 +83,9 @@ namespace PublicaDesafioBackend.Controllers
                     }
                 }
                 return Accepted(jogo);
-            }catch(Exception ex)
+            }catch(Exception)
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Erro ao Adicionar o Placar.");
             }            
         }
 

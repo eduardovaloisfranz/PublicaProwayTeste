@@ -23,7 +23,7 @@ namespace PublicaDesafioBackend
                 try
                 {
                     var context = services.GetRequiredService<ContextoJogo>();                    
-                    InicializaDB.InicializaBanco(context);
+                    //InicializaDB.InicializaBanco(context);
                 }
                 catch (Exception ex)
                 {

@@ -8,7 +8,7 @@ using PublicaDesafioBackend.Models;
 namespace PublicaDesafioBackend.Migrations
 {
     [DbContext(typeof(ContextoJogo))]
-    [Migration("20200920183135_inicio")]
+    [Migration("20200920211944_inicio")]
     partial class inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,20 +24,20 @@ namespace PublicaDesafioBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<ushort>("MaximoTemporada")
-                        .HasColumnType("smallint unsigned");
+                    b.Property<short>("MaximoTemporada")
+                        .HasColumnType("smallint");
 
-                    b.Property<ushort>("MinimoTemporada")
-                        .HasColumnType("smallint unsigned");
+                    b.Property<short>("MinimoTemporada")
+                        .HasColumnType("smallint");
 
-                    b.Property<ushort>("Placar")
-                        .HasColumnType("smallint unsigned");
+                    b.Property<short>("Placar")
+                        .HasColumnType("smallint");
 
-                    b.Property<ushort>("QuebraRecordeMax")
-                        .HasColumnType("smallint unsigned");
+                    b.Property<short>("QuebraRecordeMax")
+                        .HasColumnType("smallint");
 
-                    b.Property<ushort>("QuebraRecordeMin")
-                        .HasColumnType("smallint unsigned");
+                    b.Property<short>("QuebraRecordeMin")
+                        .HasColumnType("smallint");
 
                     b.HasKey("ID");
 
