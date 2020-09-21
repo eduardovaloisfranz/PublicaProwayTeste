@@ -9,15 +9,23 @@
     <Compile Remove="Migrations\20200920182854_inicio.Designer.cs" />
     <Compile Remove="Migrations\20200920183135_inicio.cs" />
     <Compile Remove="Migrations\20200920183135_inicio.Designer.cs" />
+    <Compile Remove="Migrations\20200920211944_inicio.cs" />
+    <Compile Remove="Migrations\20200920211944_inicio.Designer.cs" />
+    <Compile Remove="Migrations\20200921204053_updatedatabase.cs" />
+    <Compile Remove="Migrations\20200921204053_updatedatabase.Designer.cs" />
+    <Compile Remove="Migrations\20200921204156_inicio.cs" />
+    <Compile Remove="Migrations\20200921204156_inicio.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
 
 

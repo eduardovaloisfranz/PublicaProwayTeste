@@ -17,6 +17,8 @@ namespace PublicaDesafioBackend.Models
 
         public short QuebraRecordeMin { get; set; }
 
-        public short QuebraRecordeMax { get; set; }
+        public short QuebraRecordeMax { get; set; }        
+
+        public int PessoaID { get; set; }
     }
 }

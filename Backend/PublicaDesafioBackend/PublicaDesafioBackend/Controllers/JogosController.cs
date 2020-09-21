@@ -41,10 +41,10 @@ namespace PublicaDesafioBackend.Controllers
                 }
                 _ctx.Jogos.Add(jogo);
                 _ctx.SaveChanges();                
-                if(_ctx.Jogos.Count() == 1)
+                int quantidadeJogos = _ctx.Jogos.Where(el =>  el.PessoaID.Equals(jogo.PessoaID)).Count();
+                if (quantidadeJogos == 1)
                 {
-                    Jogo firstGame = _ctx.Jogos.FirstOrDefault<Jogo>();
-                    //int firstId = 
+                    Jogo firstGame = _ctx.Jogos.Where(el => el.PessoaID.Equals(jogo.PessoaID)).FirstOrDefault<Jogo>();                    
                     Jogo jog = _ctx.Jogos.Find(firstGame.ID);
                     jog.MinimoTemporada = jog.Placar;
                     jog.MaximoTemporada = jog.Placar;
@@ -83,9 +83,9 @@ namespace PublicaDesafioBackend.Controllers
                     }
                 }
                 return Accepted(jogo);
-            }catch(Exception)
+            }catch(Exception ex)
             {
-                return BadRequest("Erro ao Adicionar o Placar.");
+                return BadRequest("Erro ao Adicionar o Placar." + ex.Message); 
             }            
         }
 

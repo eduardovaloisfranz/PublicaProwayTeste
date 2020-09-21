@@ -28,6 +28,9 @@ namespace PublicaDesafioBackend.Migrations
                     b.Property<short>("MinimoTemporada")
                         .HasColumnType("smallint");
 
+                    b.Property<int>("PessoaID")
+                        .HasColumnType("int");
+
                     b.Property<short>("Placar")
                         .HasColumnType("smallint");
 
@@ -39,7 +42,41 @@ namespace PublicaDesafioBackend.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("PessoaID");
+
                     b.ToTable("Jogos");
+                });
+
+            modelBuilder.Entity("PublicaDesafioBackend.Models.Pessoa", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("NomeCompleto")
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Senha")
+                        .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
+                        .HasMaxLength(250);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("pessoas");
+                });
+
+            modelBuilder.Entity("PublicaDesafioBackend.Models.Jogo", b =>
+                {
+                    b.HasOne("PublicaDesafioBackend.Models.Pessoa", "Pessoa")
+                        .WithMany("Jogos")
+                        .HasForeignKey("PessoaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

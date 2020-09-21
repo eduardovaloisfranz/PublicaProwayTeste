@@ -39,8 +39,15 @@ C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\PublicaDesafioBackend.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\PublicaDesafioBackend.pdb
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.csproj.CoreCompileInputs.cache
-C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.pdb
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.genruntimeconfig.cache
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.csproj.CoreCompileInputs.cache
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.MvcApplicationPartsAssemblyInfo.cache

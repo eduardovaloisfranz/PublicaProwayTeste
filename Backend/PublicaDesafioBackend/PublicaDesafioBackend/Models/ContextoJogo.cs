@@ -12,5 +12,7 @@ namespace PublicaDesafioBackend.Models
         {
         }
         public DbSet<Jogo> Jogos { get; set; }
+
+        public DbSet<Pessoa> pessoas { get; set; }
     }
 }
