@@ -1,9 +1,9 @@
 <template>
-<div>
+<div v-if="podeVisualizar === true">
     <b-container fluid>
       <b-row>
         <b-col sm="12" md="12">
-            <h3 class="text-center p-3 lead h3">Ola Maria, segue a lista de seus Últimos Jogos</h3>
+            <h3 class="text-center p-3 lead h3">Ola <i class="text-info">{{pessoa.nomeCompleto}}</i>, segue a lista de seus Últimos Jogos</h3>
         </b-col>
       </b-row>
       <b-row>
@@ -12,19 +12,13 @@
             <b-button variant="outline-success" @click="handleCadastrarPlacar">Cadastrar novo Placar</b-button>
           </div>
         </b-col>
-        <b-col sm="12" md="12">         
-            <div v-if="loading === true" class="d-flex justify-content-center">
-              <div>
-                <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" variant="danger"></b-spinner>
-                <p class="p text-info pt-2">Carregando...</p>
-              </div>
-            </div>
-            <div v-else>
-            <tabela :listaDeJogos="listOfGames"/>              
+        <b-col sm="12" md="12"> 
+            <div>
+            <tabela :listaDeJogos="jogos"/>              
             </div>
         </b-col>
       </b-row>      
-    </b-container>
+    </b-container>    
     <b-modal title="Cadastrar novo Jogo" v-model="showAddGame" hide-footer centered>  
       
       <label for="input-NovoJogo">Informe o Seu Placar:</label>
@@ -41,35 +35,34 @@
       </div>  
     </b-modal>
 </div>
+<div v-else>
+    <b-container>
+        <b-row>
+            <b-col sm="12" md="12" lg="12">
+                <h1 class="h1 text-center text-danger lead">Você não Possui permissão necessária para visualizar esta página, por favor efetue o login</h1>
+                <h2 class="h2 text-center text-info lead">Aguarde aqui e será redicionado para efetuar o login</h2>                                
+            </b-col>
+        </b-row>
+    </b-container>
+</div>
 </template>
 
 <script>
 import tabela from "@/components/tabela.vue"
 import {api} from "@/services"
+import {mapState} from "vuex"
 export default {  
   name: 'Index',
   components: {
     Tabela: tabela
   },
   data(){
-    return {
-      listOfGames: null,
-      loading: true,
+    return {     
       showAddGame: false,
       placarJogo: 0
     }
   },
-  methods: {
-    getAllGames(){
-      setTimeout(()=> {   
-        api
-        .get("/api/jogos")
-          .then(r => {
-            this.loading = false;
-            this.listOfGames = r.data
-          })
-      }, 1400)        
-    },
+  methods: {    
     handleCadastrarPlacar(){
         this.showAddGame = true;
     },
@@ -123,15 +116,31 @@ export default {
         footerClass: "p-2 border-top-0",
         centered: true
       };
+    },
+    setGamesSessionStorage(){
+        this.$store.commit("SETAR_JOGOS", JSON.parse(sessionStorage.getItem("Jogos")))        
+        this.$store.commit("MODIFICAR_PESSOA", JSON.parse(sessionStorage.getItem("Pessoa")))        
     }
   },
-  created(){
-    this.getAllGames();
+  created(){    
+    this.setGamesSessionStorage();    
+    if(this.podeVisualizar === false) {
+        setTimeout(() => {
+            this.$router.push("/login")
+        }, 5000)
+    }
   },
   computed: {
+    ...mapState(["pessoa", "jogos"]),
+
     jogoIsValido(){
        return this.placarJogo > 0 && this.placarJogo <= 1000
+    },
+    podeVisualizar(){
+        return sessionStorage.getItem("token") === null ? false : true
     }
+    
+    
   }
 }
 </script>

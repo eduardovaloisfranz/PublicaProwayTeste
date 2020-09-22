@@ -24,14 +24,21 @@ namespace PublicaDesafioBackend.Controllers
         {
             user.Senha = Util.Util.HashPassword(user.Senha);
             Pessoa usuario = _context.pessoas.Where(el => el.Email.Equals(user.Email) && el.Senha.Equals(user.Senha)).FirstOrDefault();
+            usuario.Senha = null;
             if (usuario == null)
             {
-                return BadRequest("Usuario não encontrado");
+                return NotFound("Usuario não encontrado");
             }
             else
             {
                 string token = Util.Util.generateToken(usuario);
-                return Ok(token);
+                var jogos = _context.Jogos.Where(el => el.PessoaID.Equals(usuario.ID)).ToList();
+                usuario.Jogos = null;
+                var data = new object[3];
+                data[0] = token;
+                data[1] = jogos;
+                data[2] = usuario;
+                return Ok(data);
             }
         }
 

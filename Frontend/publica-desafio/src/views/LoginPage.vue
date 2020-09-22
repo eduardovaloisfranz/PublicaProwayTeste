@@ -26,13 +26,14 @@
             class="p text-capitalize text-monospace text-danger text-right"
             @click.prevent="handleEsquecimentoSenha"
           >Esqueci minha Senha</p>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-between">
             <b-button
-              variant="success"
+              variant="outline-success"
               @click.prevent="efetuarLogin"
               :disabled="!loginIsValido"
               type="submit"
             >Login</b-button>
+            <b-button @click.prevent to="cadastro" variant="outline-info">Criar Conta</b-button>
           </div>
         </b-form>
       </b-col>
@@ -114,10 +115,16 @@ export default {
         api
         .post("/api/Pessoa/Login", this.user)
             .then(res => {
-                sessionStorage.getItem("token", res.data);
+                console.log(res)
+                sessionStorage.setItem("token", res.data[0]);
+                this.$store.commit("SETAR_JOGOS", res.data[1])
+                sessionStorage.setItem("Jogos", JSON.stringify(res.data[1]))
+                this.$store.commit("MODIFICAR_PESSOA", res.data[2])
+                sessionStorage.setItem("Pessoa", JSON.stringify(res.data[2]))
                 this.$router.push({path: "/"})
             })
-            .catch(() => {
+            .catch((res) => {
+                console.log(res)
                 alert("Falha ao efetuar o login, cheque os dados e tente novamente");
             })
     },
