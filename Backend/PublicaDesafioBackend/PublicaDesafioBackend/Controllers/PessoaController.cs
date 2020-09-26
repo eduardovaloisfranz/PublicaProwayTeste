@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using PublicaDesafioBackend.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -114,6 +116,43 @@ namespace PublicaDesafioBackend.Controllers
                 return Ok(guid);
             }
 
+        }
+        [HttpPut("{id}")]
+        [Authorize]
+        public ActionResult Put(int id, [FromBody] Pessoa pes)
+        {
+            try
+            {
+                Pessoa pessoa = _context.pessoas.Find(id);
+                if(pessoa == null)
+                {
+                    return NotFound("Pessoa não encontrada");
+                }
+                string stream = Request.Headers[HeaderNames.Authorization].ToString();
+                stream = stream.Replace("Bearer ", string.Empty);
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(stream);
+                var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+                int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
+                if(pessoa.ID == IdUserToken)
+                {
+                    pessoa.NomeCompleto = pes.NomeCompleto;
+                    pessoa.Senha = Util.Util.HashPassword(pes.Senha);
+                    pessoa.Email = pes.Email;
+                    _context.SaveChanges();
+                    return Ok("Registro Alterado com Sucesso");
+                }
+                else
+                {
+                    return Unauthorized("Você não pode editar uma informação ao qual não é sua");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("Erro ao Editar o Usuário: " + ex.Message);
+            }
+            
         }
 
     }

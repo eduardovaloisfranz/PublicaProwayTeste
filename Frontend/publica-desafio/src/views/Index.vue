@@ -8,7 +8,11 @@
       </b-row>
       <b-row>
         <b-col sm="12" lg="12">
-          <div class="d-flex justify-content-end pb-2">
+          <div class="d-flex justify-content-end pb-3 pt-3">
+            <b-button variant="outline-danger" @click="handleLogout">Logout</b-button>
+          </div>
+          <div class="d-flex justify-content-between pb-2">
+            <b-button variant="outline-info" @click="showModalEditUser = true">Editar Informações Pessoais</b-button>
             <b-button variant="outline-success" @click="handleCadastrarPlacar">Cadastrar novo Placar</b-button>
           </div>
         </b-col>
@@ -57,6 +61,46 @@
             <b-button variant="warning" @click="showInfoGame = false">Fechar Modal</b-button>
         </div>
     </b-modal>
+    <b-modal v-model="showModalEditUser" hide-footer centered title="Editar informações Pessoais">
+        <section>
+          <label for="input-nomeCompleto">Informe Seu novo Nome Completo:</label>
+          <b-form-input
+            id="input-novoNome"
+            v-model="user.nomeCompleto"
+            :state="nomeUserIsValido"
+            type="text"
+            aria-describedby="input-live-help input-live-feedback"
+            placeholder="Informe o seu novo Nome"
+          ></b-form-input>
+
+          <label for="input-email">Informe Seu novo Email:</label>
+          <b-form-input
+            id="input-novoEmail"
+            v-model="user.email"
+            :state="emailIsValido"
+            type="email"
+            aria-describedby="input-live-help input-live-feedback"
+            placeholder="Informe o seu novo Email"
+          ></b-form-input>
+          <label for="input-email">Informe Sua nova Senha:</label>
+          <b-form-input
+            id="input-novaSenha"
+            v-model="user.senha"
+            type="password"
+            :state="senhaIsValida"
+            aria-describedby="input-live-help input-live-feedback"
+            placeholder="Informe sua nova Senha"
+          ></b-form-input>          
+        </section>    
+        <div class="d-flex justify-content-between pt-3">
+            <b-button
+              variant="success"
+              :disabled="usuarioIsValido"
+              @click.prevent="handleEditUser"
+            >Alterar Informações</b-button>
+            <b-button variant="warning" @click="showModalEditUser = false">Fechar Modal</b-button>
+        </div>
+    </b-modal>
 </div>
 <div v-else>
     <b-container>
@@ -83,7 +127,13 @@ export default {
       showAddGame: false,
       placarJogo: 0,
       showInfoGame: false,
-      selectedGame: {}
+      selectedGame: {},
+      showModalEditUser: false,
+      user: {
+        nomeCompleto: "",
+        email: "",
+        senha: ""
+      }
     }
   },
   methods: {    
@@ -93,6 +143,16 @@ export default {
     handleFecharModal(){
       this.showAddGame = false;
       this.placarJogo = 0;
+    },
+    handleLogout(){
+      this.makeToast("warning", "Efetuando Logout", "Você será redicionado para o Login")    
+      setTimeout(() => {
+     this.$store.commit("MODIFICAR_PESSOA", {})
+      this.$store.commit("SETAR_JOGOS", [])
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("pessoa");
+        this.$router.push("/Login")        
+      }, 1350)
     },
     async handleAddGame(){
       let res = "";
@@ -152,11 +212,44 @@ export default {
     },   
     fetchGamesBackend(){        
         this.$store.commit("MODIFICAR_PESSOA", JSON.parse(sessionStorage.getItem("Pessoa")))          
+        this.user.nomeCompleto = this.Pessoa.nomeCompleto;
+        this.user.email = this.Pessoa.email;
         this.$store.dispatch("getAllGames", { idx: this.Pessoa.id})
     },
     handleClick(evt){
       this.selectedGame = evt;
       this.showInfoGame = true;      
+    },
+    async handleEditUser(){           
+       let res = "";
+          await this.$bvModal
+            .msgBoxConfirm(
+              "Você realmente tem certeza que deseja modificar suas informações?",
+              this.estiloConfirm("Confirmação", "info")
+          )
+          .then(r => (res = r));
+      if(res === true){
+        this.user.id = this.Pessoa.id;
+        this.$store.dispatch("editUser", { obj: this.user})
+        this.makeToast(
+          "success",
+          "Ação concluída",
+          "Registro Modificado com Sucesso"
+        );
+        setTimeout(() => {
+            this.showModalEditUser = false;
+        }, 1350)
+      }else{
+        this.$bvModal
+          .msgBoxOk(
+            "Registro Mantido",
+            this.estiloMsgBox("Nenhuma Modificação foi efetuada", "success")
+          )
+          .then(() => {
+              this.showModalEditUser = false;
+          }, 1350)
+      }
+
     },
     async handleDeleteGame(){      
       let res = "";
@@ -173,6 +266,9 @@ export default {
           "Ação concluída",
           "Registro apagado com Sucesso"
         );
+        setTimeout(() => {
+            this.showInfoGame = false;
+        }, 1350)
         
       }else{
         this.$bvModal
@@ -215,12 +311,39 @@ export default {
         return false;
       }else{
         return true;
+      }      
+    },
+        emailIsValido() {
+      if (this.user.email != undefined) {
+        return this.user.email.includes("@") && this.user.email.includes(".com")
+          ? true
+          : false;
       }
-      
-    }
-  
-    
-    
+      return false;
+    },
+    senhaIsValida() {
+      if (this.user.senha != undefined) {
+        return this.user.senha.length > 3 ? true : false;
+      } else {
+        return false;
+      }
+    },
+     nomeUserIsValido() {
+      if (this.user.nomeCompleto != undefined) {
+        return this.user.nomeCompleto.length > 3 && this.user.nomeCompleto.length < 20
+          ? true
+          : false;
+      } else {
+        return false;
+      }
+    },
+    usuarioIsValido() {
+      if (this.emailIsValido && this.senhaIsValida && this.nomeUserIsValido) {
+        return false;
+      } else {
+        return true;
+      }
+    } 
   }
 }
 </script>

@@ -104,8 +104,7 @@ export default {
     efetuarLogin() {     
         api
         .post("/api/Pessoa/Login", this.user)
-            .then(res => {
-                console.log(res)
+            .then(res => {                
                 sessionStorage.setItem("token", res.data[0]);
                 this.$store.commit("SETAR_JOGOS", res.data[1])
                 sessionStorage.setItem("Jogos", JSON.stringify(res.data[1]))
@@ -113,9 +112,12 @@ export default {
                 sessionStorage.setItem("Pessoa", JSON.stringify(res.data[2]))
                 this.$router.push({path: "/"})
             })
-            .catch((res) => {
-                console.log(res)
-                alert("Falha ao efetuar o login, cheque os dados e tente novamente");
+            .catch((err) => {                
+                this.makeToast(
+                        "danger",
+                        "Erro ao Tentar Efetuar o Login",
+                        `Verifique seus dados e tente novamente. Erro: ${err}`
+                      );
             })
     },
     handleEsquecimentoSenha() {
@@ -127,8 +129,12 @@ export default {
          .post("/api/Pessoa/recuperarSenha", obj)
             .then(() => {
                 this.tokenRecoveryPassword = "";
-            }).catch(err => {
-                alert("Erro ao tentar Recuperar a Senha, Por favor verifique os Dados e Tente Novamente" + err)
+            }).catch(err => {                
+                this.makeToast(
+                        "danger",
+                        "Erro ao Tentar recuperar a Senha",
+                        `Verifique seus dados e tente novamente. Erro: ${err}`
+                      );
             })
 
     },
@@ -139,7 +145,11 @@ export default {
         tokenDecoded.exp < new Date().getTime() + 1 / 1000 &&
         tokenDecoded.email !== this.emailRecuperacaoSenha
       ) {
-        alert("Token expirado, por favor escolha outro");
+        this.makeToast(
+                        "danger",
+                        "Token Invalido",
+                        `Token Encontra-se Expirado`
+                      );
       } else { 
           api 
            .post("/api/pessoa/token", obj)
@@ -147,10 +157,21 @@ export default {
                     this.novaSenha = res.data;
                     this.senhaModificada = true;
                 })
-                .catch(err => {
-                    alert("Erro ao Tentar recuperar a senha, verifique os dados e tente novamente" + err)
+                .catch(err => {                    
+                     this.makeToast(
+                        "danger",
+                        "Erro ao Tentar ao Modificar a senha",
+                        `Verifique o token Fornecido e tente novamente. Erro: ${err}`
+                      );
                 })
       }
+    },
+      makeToast(variant = null, title, corpo) {
+      this.$bvToast.toast(corpo, {
+        title: `${title}`,
+        variant: variant,
+        solid: true
+      });
     }
   },
   computed: {

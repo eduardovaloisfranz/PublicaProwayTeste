@@ -121,6 +121,7 @@ namespace PublicaDesafioBackend.Controllers
 
         // DELETE api/<JogosController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try
@@ -141,7 +142,7 @@ namespace PublicaDesafioBackend.Controllers
                 {
                     _ctx.Jogos.Remove(jogo);
                     _ctx.SaveChanges();
-                    return NoContent();
+                    return Ok("Registro Apagado com Sucesso");
                 }
                 else
                 {

@@ -44,10 +44,16 @@ export default new Vuex.Store({
               .delete(`/api/Jogos/${payload.idx}`)
                 .then(() => {
                     context.commit("DELETE_GAME", payload)
+                })            
+        },
+        editUser(context, payload){
+            console.log(payload.obj)
+            api
+              .put(`/api/Pessoa/${payload.obj.id}`, payload.obj)
+                .then(() => {
+                    sessionStorage.setItem("Pessoa", JSON.stringify(payload.obj))
+                    context.commit("MODIFICAR_PESSOA", payload.obj)
                 })
-
-
-            
         }
     },
    
