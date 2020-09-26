@@ -90,8 +90,7 @@ export default {
         !this.nomeIsValido() ||         
         !this.emailIsValido() 
         
-      ) {
-        //cpf;
+      ) {        
         return true;
       } else {
         return false;

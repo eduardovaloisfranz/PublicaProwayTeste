@@ -47,10 +47,15 @@ namespace PublicaDesafioBackend.Controllers
         {
             try
             {
-                user.Senha = Util.Util.HashPassword(user.Senha);
+             
+                if (!Util.Util.UserIsValid(user))
+                {
+                    return BadRequest("Por favor cheque os dados e insira novamente");
+                }
+                user.Senha = Util.Util.HashPassword(user.Senha);                
                 _context.pessoas.Add(user);
                 _context.SaveChanges();
-                return NoContent();
+                return Ok("Conta criada com Sucesso");
 
             }catch(Exception ex)
             {

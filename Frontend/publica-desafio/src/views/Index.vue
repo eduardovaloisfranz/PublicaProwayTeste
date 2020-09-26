@@ -2,8 +2,8 @@
 <div v-if="podeVisualizar === true">
     <b-container fluid>
       <b-row>
-        <b-col sm="12" md="12">
-            <h3 class="text-center p-3 lead h3">Ola <i class="text-info">{{pessoa.nomeCompleto}}</i>, segue a lista de seus Últimos Jogos</h3>
+        <b-col sm="12" md="12">          
+            <h3 class="text-center p-3 lead h3">Ola <i class="text-info">{{Pessoa.nomeCompleto}}</i>, segue a lista de seus Últimos Jogos</h3>
         </b-col>
       </b-row>
       <b-row>
@@ -12,9 +12,12 @@
             <b-button variant="outline-success" @click="handleCadastrarPlacar">Cadastrar novo Placar</b-button>
           </div>
         </b-col>
-        <b-col sm="12" md="12"> 
-            <div>
-            <tabela :listaDeJogos="jogos"/>              
+        <b-col sm="12" md="12">  
+            <div v-if="possuiJogos">           
+            <tabela :listaDeJogos="Jogos"/>              
+            </div>
+            <div v-else>
+                <h2 class="h2 text-center text-danger">Você não possui nenhum jogo cadastrado, por favor adicione clicando no botão adicionar para popular esta lista</h2>
             </div>
         </b-col>
       </b-row>      
@@ -49,7 +52,6 @@
 
 <script>
 import tabela from "@/components/tabela.vue"
-import {api} from "@/services"
 import {mapState} from "vuex"
 export default {  
   name: 'Index',
@@ -79,18 +81,16 @@ export default {
           )
           .then(r => (res = r));
       if(res === true){
-        let obj = {
-          placar: this.placarJogo
+        let objX = {
+          placar: this.placarJogo,
+          pessoaID: this.Pessoa.id
         }
-        api
-          .post("/api/Jogos", obj)
-            .then(res => {
-              this.listOfGames.push(res.data);
-              this.placarJogo = 0;
-              setTimeout(() => {
-                this.showAddGame = false;
-              }, 1200)
-            })
+        
+        this.$store.dispatch("addGameToList", { obj: objX})
+        setTimeout(() => {
+            this.placarJogo = 0;
+            this.showAddGame = false;
+        }, 1325)      
       }
     },
      estiloConfirm(title, variant) {
@@ -105,25 +105,16 @@ export default {
         hideHeaderClose: false,
         centered: true
       };
-    },
-    estiloMsgBox(title, variant) {
-      return {
-        title: title,
-        size: "sm",
-        buttonSize: "sm",
-        okVariant: variant || "success",
-        headerClass: "p-2 border-bottom-0",
-        footerClass: "p-2 border-top-0",
-        centered: true
-      };
-    },
-    setGamesSessionStorage(){
-        this.$store.commit("SETAR_JOGOS", JSON.parse(sessionStorage.getItem("Jogos")))        
-        this.$store.commit("MODIFICAR_PESSOA", JSON.parse(sessionStorage.getItem("Pessoa")))        
+    },      
+    fetchGamesBackend(){        
+        this.$store.commit("MODIFICAR_PESSOA", JSON.parse(sessionStorage.getItem("Pessoa")))          
+        this.$store.dispatch("getAllGames", { idx: this.Pessoa.id})
     }
   },
   created(){    
-    this.setGamesSessionStorage();    
+    if(this.podeVisualizar === true){
+      this.fetchGamesBackend();    
+    }
     if(this.podeVisualizar === false) {
         setTimeout(() => {
             this.$router.push("/login")
@@ -131,14 +122,24 @@ export default {
     }
   },
   computed: {
-    ...mapState(["pessoa", "jogos"]),
+    ...mapState(["Pessoa", "Jogos"]),
 
     jogoIsValido(){
        return this.placarJogo > 0 && this.placarJogo <= 1000
     },
     podeVisualizar(){
         return sessionStorage.getItem("token") === null ? false : true
+    },
+    possuiJogos(){     
+     if(this.Jogos.length === 0)
+      {
+        return false;
+      }else{
+        return true;
+      }
+      
     }
+  
     
     
   }

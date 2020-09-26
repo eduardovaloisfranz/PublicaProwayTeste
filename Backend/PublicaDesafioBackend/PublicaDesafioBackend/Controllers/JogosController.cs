@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using PublicaDesafioBackend.Models;
 using PublicaDesafioBackend.Util;
 
@@ -19,23 +22,27 @@ namespace PublicaDesafioBackend.Controllers
         public JogosController(ContextoJogo ctx)
         {
             this._ctx = ctx;
-        }
-        [HttpGet]
-        public ActionResult Get()
-        {
-            //return new string[] { "value1", "value2" };
-            var ListaJogos = from jogo in _ctx.Jogos.ToList() select jogo;
-            return Ok(ListaJogos);
-        }
-
+        }     
 
         // POST api/<JogosController>
         [HttpPost]
+        [Authorize]
         public ActionResult Post([FromBody] Jogo jogo)
         {
             try
             {
-                if(jogo.Placar <= 0 || jogo.Placar > 1000)
+                string stream = Request.Headers[HeaderNames.Authorization].ToString();
+                stream = stream.Replace("Bearer ", string.Empty);
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(stream);
+                var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+                int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
+                if(jogo.PessoaID != IdUserToken)
+                {
+                    return Unauthorized("Você não pode adicionar nenhum jogo para alguem que não seja você");
+                }
+
+                if (jogo.Placar <= 0 || jogo.Placar > 1000)
                 {
                     return BadRequest("Placar invalido");
                 }
@@ -88,13 +95,29 @@ namespace PublicaDesafioBackend.Controllers
                 return BadRequest("Erro ao Adicionar o Placar." + ex.Message); 
             }            
         }
-
-        // PUT api/<JogosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("{id}")]
+        [Authorize]
+        public ActionResult Get(int id)
         {
+            string stream = Request.Headers[HeaderNames.Authorization].ToString();
+            stream = stream.Replace("Bearer ", string.Empty);
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(stream);
+            var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+            int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
+            if(IdUserToken == id)
+            {
+                var listaDeJogos = _ctx.Jogos.Where(el => el.PessoaID.Equals(id)).ToList();
+                return Ok(listaDeJogos);
+            }
+            else
+            {
+                return Unauthorized("Você não pode visualizar jogos que não pertencem a você");
+            }
+
         }
 
+       
         // DELETE api/<JogosController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)

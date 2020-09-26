@@ -64,6 +64,26 @@ namespace PublicaDesafioBackend.Util
             return tokenHandler.WriteToken(token);
         }
 
+        public static bool UserIsValid(Pessoa user)
+        {
+            if (user.NomeCompleto == null || user.NomeCompleto.Length < 3)
+            {
+                return false;
+            }
+            else if (user.Email == null ||( user.Email.Length < 3 && user.Email.Contains("@")))
+            {
+                return false;
+            }
+            else if (user.Senha == null || user.Senha.Length < 3)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public static string recoveryPasswordToken(string email)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -79,7 +99,6 @@ namespace PublicaDesafioBackend.Util
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
-
-
+      
     }
 }
