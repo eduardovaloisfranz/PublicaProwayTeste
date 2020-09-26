@@ -18,6 +18,10 @@ export default new Vuex.Store({
         },
         SETAR_JOGOS(state, payload){
             state.Jogos = payload;
+        },
+        DELETE_GAME(state, payload){
+            let idx = state.Jogos.findIndex(el => el.id === payload.idx)
+            state.Jogos.splice(idx, 1)
         }
     },
     actions: {
@@ -34,8 +38,17 @@ export default new Vuex.Store({
                 .then(res => {                    
                     context.commit("SETAR_JOGOS", res.data)
                 })
-        }
+        },
+        deleteGame(context, payload){
+            api
+              .delete(`/api/Jogos/${payload.idx}`)
+                .then(() => {
+                    context.commit("DELETE_GAME", payload)
+                })
 
+
+            
+        }
     },
    
 

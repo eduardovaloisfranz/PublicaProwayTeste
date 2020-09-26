@@ -63,7 +63,8 @@
             :fields="fields"
             :sort-by.sync="sortBy"
             :sort-desc.sync="sortDesc"
-            sort-icon-left   
+            sort-icon-left 
+            @row-clicked="handleClick($event)"  
           >
             <template v-slot:table-busy>
               <div class="text-center text-danger my-2">
@@ -111,6 +112,11 @@ export default {
     isBusy() {
       return this.listaDeJogos.length === 0 ? true : false;
     },
+    },
+    methods: {
+      handleClick(event){
+        this.$emit("click-tabela", event)
+      }
     }
 }
 </script>

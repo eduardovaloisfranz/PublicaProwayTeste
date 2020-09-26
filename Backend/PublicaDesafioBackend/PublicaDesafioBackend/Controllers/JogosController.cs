@@ -22,7 +22,7 @@ namespace PublicaDesafioBackend.Controllers
         public JogosController(ContextoJogo ctx)
         {
             this._ctx = ctx;
-        }     
+        }
 
         // POST api/<JogosController>
         [HttpPost]
@@ -37,7 +37,7 @@ namespace PublicaDesafioBackend.Controllers
                 var jsonToken = handler.ReadToken(stream);
                 var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
                 int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
-                if(jogo.PessoaID != IdUserToken)
+                if (jogo.PessoaID != IdUserToken)
                 {
                     return Unauthorized("Você não pode adicionar nenhum jogo para alguem que não seja você");
                 }
@@ -47,11 +47,11 @@ namespace PublicaDesafioBackend.Controllers
                     return BadRequest("Placar invalido");
                 }
                 _ctx.Jogos.Add(jogo);
-                _ctx.SaveChanges();                
-                int quantidadeJogos = _ctx.Jogos.Where(el =>  el.PessoaID.Equals(jogo.PessoaID)).Count();
+                _ctx.SaveChanges();
+                int quantidadeJogos = _ctx.Jogos.Where(el => el.PessoaID.Equals(jogo.PessoaID)).Count();
                 if (quantidadeJogos == 1)
                 {
-                    Jogo firstGame = _ctx.Jogos.Where(el => el.PessoaID.Equals(jogo.PessoaID)).FirstOrDefault<Jogo>();                    
+                    Jogo firstGame = _ctx.Jogos.Where(el => el.PessoaID.Equals(jogo.PessoaID)).FirstOrDefault<Jogo>();
                     Jogo jog = _ctx.Jogos.Find(firstGame.ID);
                     jog.MinimoTemporada = jog.Placar;
                     jog.MaximoTemporada = jog.Placar;
@@ -60,8 +60,8 @@ namespace PublicaDesafioBackend.Controllers
                     _ctx.SaveChanges();
                 }
                 else
-                {                    
-                    Jogo jogoAnterior = Util.Util.getPreviousValidGame(_ctx, jogo);          
+                {
+                    Jogo jogoAnterior = Util.Util.getPreviousValidGame(_ctx, jogo);
                     if (jogo.Placar < jogoAnterior.MinimoTemporada)
                     {
                         jogo.MinimoTemporada = jogo.Placar;
@@ -90,10 +90,11 @@ namespace PublicaDesafioBackend.Controllers
                     }
                 }
                 return Accepted(jogo);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                return BadRequest("Erro ao Adicionar o Placar." + ex.Message); 
-            }            
+                return BadRequest("Erro ao Adicionar o Placar." + ex.Message);
+            }
         }
         [HttpGet("{id}")]
         [Authorize]
@@ -105,7 +106,7 @@ namespace PublicaDesafioBackend.Controllers
             var jsonToken = handler.ReadToken(stream);
             var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
             int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
-            if(IdUserToken == id)
+            if (IdUserToken == id)
             {
                 var listaDeJogos = _ctx.Jogos.Where(el => el.PessoaID.Equals(id)).ToList();
                 return Ok(listaDeJogos);
@@ -117,11 +118,42 @@ namespace PublicaDesafioBackend.Controllers
 
         }
 
-       
+
         // DELETE api/<JogosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-        }
+            try
+            {
+                Jogo jogo = _ctx.Jogos.Find(id);
+                if (jogo == null)
+                {
+                    return NotFound("Nenhum Jogo foi Encontrado neste ID");
+
+                }
+                string stream = Request.Headers[HeaderNames.Authorization].ToString();
+                stream = stream.Replace("Bearer ", string.Empty);
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(stream);
+                var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+                int IdUserToken = Convert.ToInt32(tokenS.Claims.First(claim => claim.Type == "primarysid").Value.ToString());
+                if (jogo.PessoaID == IdUserToken)
+                {
+                    _ctx.Jogos.Remove(jogo);
+                    _ctx.SaveChanges();
+                    return NoContent();
+                }
+                else
+                {
+                    return Unauthorized("Você não pode apagar um jogo que não é seu");
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Erro ao tentar Apagar este Jogo" + e.Message);
+            }    
+     
+       
     }
+}
 }

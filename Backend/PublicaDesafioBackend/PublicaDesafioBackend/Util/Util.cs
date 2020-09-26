@@ -31,7 +31,6 @@ namespace PublicaDesafioBackend.Util
             return null;
         }
 
-
         public static string HashPassword(string password)
         {
             UnicodeEncoding encoding = new UnicodeEncoding();
@@ -95,7 +94,7 @@ namespace PublicaDesafioBackend.Util
         {
             var apiKey = "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";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("dudufranz13@gmail.com", "JFJ Representacoes");
+            var from = new EmailAddress("dudufranz13@gmail.com", "Desafio Pública");
             var subject = Assunto;
             var to = new EmailAddress(Destinatario, "");
             var plainTextContent = CorpoEmail;

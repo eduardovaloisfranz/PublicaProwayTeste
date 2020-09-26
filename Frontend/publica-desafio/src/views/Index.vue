@@ -13,8 +13,9 @@
           </div>
         </b-col>
         <b-col sm="12" md="12">  
-            <div v-if="possuiJogos">           
-            <tabela :listaDeJogos="Jogos"/>              
+            <div v-if="possuiJogos">  
+              <p class="p text-left text-success">Clique no registro para obter detalhes</p>         
+            <tabela :listaDeJogos="Jogos" @click-tabela="handleClick($event)"/>              
             </div>
             <div v-else>
                 <h2 class="h2 text-center text-danger">Você não possui nenhum jogo cadastrado, por favor adicione clicando no botão adicionar para popular esta lista</h2>
@@ -36,6 +37,25 @@
         <b-button variant="danger" @click="handleFecharModal">Cancelar</b-button>        
         <b-button variant="outline-success" :disabled="!jogoIsValido" @click="handleAddGame">Cadastrar Novo Jogo</b-button>
       </div>  
+    </b-modal>
+    <b-modal v-model="showInfoGame" centered title="Detalhes Sobre o jogo" hide-footer>
+       <b-card
+        border-variant="primary"
+        :header="'Placar Jogo: ' + selectedGame.placar"
+        header-bg-variant="primary"
+        header-text-variant="white"
+        align="center"
+      >
+        <b-card-text>ID Jogo: <i class="text-danger">{{selectedGame.id}}</i></b-card-text>
+        <b-card-text>Minimo Temporada: <i class="text-success">{{selectedGame.minimoTemporada}}</i></b-card-text>
+        <b-card-text>Máximo Temporada: <i class="text-success">{{selectedGame.maximoTemporada}}</i></b-card-text>
+        <b-card-text>Quebra Recorde Mínimo: <i class="text-success">{{selectedGame.quebraRecordeMin}}</i></b-card-text>
+        <b-card-text>Quebra Recorde Máximo: <i class="text-success">{{selectedGame.quebraRecordeMax}}</i></b-card-text>      
+      </b-card>
+        <div class="d-flex justify-content-between pt-3">
+            <b-button variant="danger" @click="handleDeleteGame">Excluir Jogo</b-button>
+            <b-button variant="warning" @click="showInfoGame = false">Fechar Modal</b-button>
+        </div>
     </b-modal>
 </div>
 <div v-else>
@@ -61,7 +81,9 @@ export default {
   data(){
     return {     
       showAddGame: false,
-      placarJogo: 0
+      placarJogo: 0,
+      showInfoGame: false,
+      selectedGame: {}
     }
   },
   methods: {    
@@ -85,8 +107,12 @@ export default {
           placar: this.placarJogo,
           pessoaID: this.Pessoa.id
         }
-        
         this.$store.dispatch("addGameToList", { obj: objX})
+        this.makeToast(
+          "success",
+          "Ação concluída",
+          "Registro adicionado com Sucesso"
+        );
         setTimeout(() => {
             this.placarJogo = 0;
             this.showAddGame = false;
@@ -105,10 +131,63 @@ export default {
         hideHeaderClose: false,
         centered: true
       };
-    },      
+    },   
+     estiloMsgBox(title, variant) {
+      return {
+        title: title,
+        size: "sm",
+        buttonSize: "sm",
+        okVariant: variant || "success",
+        headerClass: "p-2 border-bottom-0",
+        footerClass: "p-2 border-top-0",
+        centered: true
+      };
+    },
+    makeToast(variant = null, title, corpo) {
+      this.$bvToast.toast(corpo, {
+        title: `${title}`,
+        variant: variant,
+        solid: true
+      });
+    },   
     fetchGamesBackend(){        
         this.$store.commit("MODIFICAR_PESSOA", JSON.parse(sessionStorage.getItem("Pessoa")))          
         this.$store.dispatch("getAllGames", { idx: this.Pessoa.id})
+    },
+    handleClick(evt){
+      this.selectedGame = evt;
+      this.showInfoGame = true;      
+    },
+    async handleDeleteGame(){      
+      let res = "";
+          await this.$bvModal
+            .msgBoxConfirm(
+              "Você realmente tem certeza que deseja remover este placar",
+              this.estiloConfirm("Esta ação é Irreversível", "danger")
+          )
+          .then(r => (res = r));
+      if(res === true){
+        this.$store.dispatch("deleteGame", { idx: this.selectedGame.id})
+        this.makeToast(
+          "success",
+          "Ação concluída",
+          "Registro apagado com Sucesso"
+        );
+        
+      }else{
+        this.$bvModal
+          .msgBoxOk(
+            "Placar não foi apagado",
+            this.estiloMsgBox("Registro mantido", "success")
+          )
+          .then(() => {
+            this.selectedGame = {}
+            setTimeout(() => {
+              this.showInfoGame = false;              
+            }, 1350)
+          });
+      }
+      
     }
   },
   created(){    

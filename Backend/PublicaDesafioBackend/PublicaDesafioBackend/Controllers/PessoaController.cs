@@ -69,18 +69,18 @@ namespace PublicaDesafioBackend.Controllers
 
         [HttpPost("recuperarSenha")]
         public ActionResult changePassword([FromBody] Pessoa user)
-        {
-            Pessoa selectedUser = _context.pessoas.Where(el => el.Email.Equals(user.Email)).FirstOrDefault();
-            if (selectedUser == null)
-            {
-                return BadRequest("Problema ao encontrar o usuario");
-            }
+        {          
             try
             {
+                Pessoa selectedUser = _context.pessoas.Where(el => el.Email.Equals(user.Email)).FirstOrDefault();
+                if (selectedUser == null)
+                {
+                    return NotFound("Usuário não encontrado");
+                }
                 string token = Util.Util.recoveryPasswordToken(user.Email);
                 string corpoEmail = "Informe esse código para recuperar sua senha: <strong>" + token + "</strong> Entretantoo esse token possui validade de apenas 30 minutos";
                 Util.Util.SendEmail(user.Email, corpoEmail, "Recuperação de Conta");
-                return NoContent();
+                return Ok("Enviado email contendo o Token para alteração de senha");
 
             }
             catch (Exception)

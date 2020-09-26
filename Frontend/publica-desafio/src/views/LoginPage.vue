@@ -101,17 +101,7 @@ export default {
     };
   },
   methods: {
-    efetuarLogin() {
-      //const URLTOFETCH = "http://localhost:50598/api/Representacao/login";
-    //   axios
-    //     .post(URLTOFETCH, this.user)
-    //     .then(res => {
-    //       sessionStorage.setItem("token", res.data);
-    //       this.$router.push({ path: "dash" });
-    //     })
-    //     .catch(() => {
-    //       alert("Falha ao efetuar o login, cheque os dados e tente novamente");
-    //     });
+    efetuarLogin() {     
         api
         .post("/api/Pessoa/Login", this.user)
             .then(res => {
@@ -132,19 +122,7 @@ export default {
       this.modalRecuperacaoSenha = true;
     },
     handleRecoveryPassword() {
-        let obj = { email: this.emailRecuperacaoSenha };
-    //const URLTOFETCH = "http://localhost:50598/api/conta/recuperarSenha";
-    //   axios
-    //     .post(URLTOFETCH, obj)
-    //     .then(() => {
-    //       this.tokenRecoveryPassword = "";
-    //     })
-    //     .catch(err =>
-    //       alert(
-    //         "Erro ao tentar recuperar a senha, verifique os dados e tente novamente: " +
-    //           err
-    //       )
-    //     );
+        let obj = { email: this.emailRecuperacaoSenha }; 
         api
          .post("/api/Pessoa/recuperarSenha", obj)
             .then(() => {
@@ -154,8 +132,7 @@ export default {
             })
 
     },
-    handleToken() {
-      //const URLTOFETCH = "http://localhost:50598/api/conta/token";
+    handleToken() {     
       let obj = { token: this.tokenRecoveryPassword };
       let tokenDecoded = jwt(obj.token);
       if (
@@ -163,19 +140,7 @@ export default {
         tokenDecoded.email !== this.emailRecuperacaoSenha
       ) {
         alert("Token expirado, por favor escolha outro");
-      } else {
-        // axios
-        //   .post(URLTOFETCH, obj)
-        //   .then(res => {
-        //     this.novaSenha = res.data;
-        //     this.senhaModificada = true;
-        //   })
-        //   .catch(err =>
-        //     alert(
-        //       "Erro ao tentar recuperar a senha, verifique os dados e tente novamente: " +
-        //         err
-        //     )
-        //   );
+      } else { 
           api 
            .post("/api/pessoa/token", obj)
                 .then(res => {
