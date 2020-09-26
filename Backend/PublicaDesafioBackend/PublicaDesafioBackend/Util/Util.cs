@@ -1,5 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using PublicaDesafioBackend.Models;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -82,6 +84,24 @@ namespace PublicaDesafioBackend.Util
             {
                 return true;
             }
+        }
+
+        public static void SendEmail(string Destinatario, string CorpoEmail, string Assunto)
+        {
+            Execute(Destinatario, CorpoEmail, Assunto).Wait();
+        }
+
+        private async static Task Execute(string Destinatario, string CorpoEmail, string Assunto)
+        {
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("dudufranz13@gmail.com", "JFJ Representacoes");
+            var subject = Assunto;
+            var to = new EmailAddress(Destinatario, "");
+            var plainTextContent = CorpoEmail;
+            var htmlContent = $"<p>{CorpoEmail}</p>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
         }
 
         public static string recoveryPasswordToken(string email)

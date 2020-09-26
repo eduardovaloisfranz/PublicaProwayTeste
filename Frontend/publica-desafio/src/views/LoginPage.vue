@@ -146,7 +146,7 @@ export default {
     //       )
     //     );
         api
-         .post("/api/Pessoa/recuperacaoSenha", obj)
+         .post("/api/Pessoa/recuperarSenha", obj)
             .then(() => {
                 this.tokenRecoveryPassword = "";
             }).catch(err => {

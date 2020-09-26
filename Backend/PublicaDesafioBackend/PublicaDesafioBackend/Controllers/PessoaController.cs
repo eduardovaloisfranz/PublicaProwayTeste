@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -66,24 +67,54 @@ namespace PublicaDesafioBackend.Controllers
         }
 
 
-        // GET api/<PessoaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("recuperarSenha")]
+        public ActionResult changePassword([FromBody] Pessoa user)
         {
-            return "value";
+            Pessoa selectedUser = _context.pessoas.Where(el => el.Email.Equals(user.Email)).FirstOrDefault();
+            if (selectedUser == null)
+            {
+                return BadRequest("Problema ao encontrar o usuario");
+            }
+            try
+            {
+                string token = Util.Util.recoveryPasswordToken(user.Email);
+                string corpoEmail = "Informe esse código para recuperar sua senha: <strong>" + token + "</strong> Entretantoo esse token possui validade de apenas 30 minutos";
+                Util.Util.SendEmail(user.Email, corpoEmail, "Recuperação de Conta");
+                return NoContent();
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Problema interno");
+            }
         }
 
-        // POST api/<PessoaController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("token")]
+        public ActionResult changePassword([FromBody] TokenPassword token)
         {
+            var stream = token.token;
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(stream);
+            var tokenS = handler.ReadToken(stream) as JwtSecurityToken;
+
+            var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
+            var exp = tokenS.Claims.First(claim => claim.Type == "exp").Value;
+            DateTime expirationTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            expirationTime = expirationTime.AddSeconds(Convert.ToDouble(exp)).ToUniversalTime();
+            if (DateTime.UtcNow > expirationTime)
+            {
+                return BadRequest("Token expirado");
+            }
+            else
+            {
+                Pessoa user = _context.pessoas.Where(user => user.Email.Equals(email)).FirstOrDefault();
+                var guid = Guid.NewGuid().ToString();
+                user.Senha = Util.Util.HashPassword(guid);
+                _context.SaveChanges();
+                return Ok(guid);
+            }
+
         }
 
-        // PUT api/<PessoaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-      
     }
 }

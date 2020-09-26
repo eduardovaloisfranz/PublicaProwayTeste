@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4x40IjSq3RhKk6NVYsHGEgw0Qv1ErKYUn+5NRDHE4nurlX4GZyNWcMhtyIHAXFEJc+Kt1fupNpgbp4mBLY9/iA==",
+  "dgSpecHash": "L5sCsMtXhQSGloAwwPKj5KaA+SzBtGC3xfHVeFATLMCLEJ7VOzZkJaMhWVI/kKSQVsD2I1Cv4mu3RtafAxvZLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\duduf\\Documents\\GitHub\\PublicaProwayTeste\\Backend\\PublicaDesafioBackend\\PublicaDesafioBackend\\PublicaDesafioBackend.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,8 @@
     "C:\\Users\\duduf\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\sendgrid\\9.21.0\\sendgrid.9.21.0.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
