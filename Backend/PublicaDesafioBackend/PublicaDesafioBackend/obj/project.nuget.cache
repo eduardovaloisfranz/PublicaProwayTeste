@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "L5sCsMtXhQSGloAwwPKj5KaA+SzBtGC3xfHVeFATLMCLEJ7VOzZkJaMhWVI/kKSQVsD2I1Cv4mu3RtafAxvZLw==",
+  "dgSpecHash": "LU79FqJ2Hqe56KnFOsshXutzYivV9KpiyROydy7T0DOsfh1CqJ8QCHHVvK+zPRIiE/8noAa94LkMtTTDAQhWJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\duduf\\Documents\\GitHub\\PublicaProwayTeste\\Backend\\PublicaDesafioBackend\\PublicaDesafioBackend\\PublicaDesafioBackend.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.7.1\\microsoft.identitymodel.tokens.6.7.1.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\mysqlconnector\\0.69.9\\mysqlconnector.0.69.9.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
@@ -59,6 +60,7 @@
     "C:\\Users\\duduf\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\sendgrid\\9.21.0\\sendgrid.9.21.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

@@ -139,7 +139,7 @@ namespace PublicaDesafioBackend.Controllers
                     pessoa.NomeCompleto = pes.NomeCompleto;
                     pessoa.Senha = Util.Util.HashPassword(pes.Senha);
                     pessoa.Email = pes.Email;
-                    _context.SaveChanges();
+                    _context.SaveChanges();                    
                     return Ok("Registro Alterado com Sucesso");
                 }
                 else
