@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LU79FqJ2Hqe56KnFOsshXutzYivV9KpiyROydy7T0DOsfh1CqJ8QCHHVvK+zPRIiE/8noAa94LkMtTTDAQhWJw==",
+  "dgSpecHash": "akLQeoJaP+PnZ6xFr5Eumep9Jv8zR+EitOlQ96shAMDqdgY4f8HOIkB7y1YO8WzoVnXDFlC5iRx7fJU+zr39Mg==",
   "success": true,
   "projectFilePath": "C:\\Users\\duduf\\Documents\\GitHub\\PublicaProwayTeste\\Backend\\PublicaDesafioBackend\\PublicaDesafioBackend\\PublicaDesafioBackend.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,8 @@
     "C:\\Users\\duduf\\.nuget\\packages\\sendgrid\\9.21.0\\sendgrid.9.21.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

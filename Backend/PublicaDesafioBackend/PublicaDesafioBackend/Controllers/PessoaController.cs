@@ -21,6 +21,12 @@ namespace PublicaDesafioBackend.Controllers
         {
             this._context = _ctx;
         }
+        /// <summary>
+        /// Efetuar Login, passando dados de Email e Senha        
+        /// </summary>
+        /// <param name="user">Objeto do tipo Pessoa</param>
+        /// <response code="404">Caso não encontre o usuário baseado no Email e Senha</response>
+        /// <response code="200">Se encontrar o usuário</response>
         // GET: api/<PessoaController>
         [HttpPost("login")]
         public ActionResult login(Pessoa user)
@@ -45,6 +51,12 @@ namespace PublicaDesafioBackend.Controllers
             }
         }
 
+        /// <summary>
+        /// Criar conta: Efetua validação se caso o usuário é Valido.
+        /// </summary>
+        /// <param name="user">Objeto do Tipo Pessoa</param>
+        ///<response code="400">Caso o usuário que é passado na requisição é considerado invalido</response>
+        ///<response code="200">Caso seja valido é adicionado o usuario e retorna uma Mensagem dizendo que a ação foi concluida com exito</response>        
         [HttpPost("criarConta")]
         public ActionResult CriarConta(Pessoa user)
         {
@@ -67,8 +79,12 @@ namespace PublicaDesafioBackend.Controllers
 
         
         }
-
-
+        /// <summary>
+        /// Usuario manda email e recebe em seu email um Token JWT para alterar a sua senha        
+        /// </summary>
+        /// <param name="user">Objeto do Tipo Pessoa</param>
+        ///<response code="404">Caso não encontre o usuário</response>
+        ///<response code="200">Caso encontre o usuario: retorna mensagem de exito informando sobre que o email que receberá com o Token</response>
         [HttpPost("recuperarSenha")]
         public ActionResult changePassword([FromBody] Pessoa user)
         {          
@@ -90,7 +106,12 @@ namespace PublicaDesafioBackend.Controllers
                 return BadRequest("Problema interno");
             }
         }
-
+        /// <summary>
+        /// Alteração de Senha com o Token recebido no Email.
+        /// /// </summary>
+        /// <param name="token">Token JWT</param>
+        ///<response code="400">Caso o token esteja expirado</response>
+        ///<response code="200">Altera a senha para uma guid e retorna esta senha na requisição</response>
         [HttpPost("token")]
         public ActionResult changePassword([FromBody] TokenPassword token)
         {
@@ -117,6 +138,14 @@ namespace PublicaDesafioBackend.Controllers
             }
 
         }
+        /// <summary>
+        /// Altera as informações de usuário
+        /// </summary>
+        /// <param name="id">ID Da pessoa que deseja modificar</param>
+        /// <param name="pes">Objeto do tipo pessoa que será enviado na requisição</param>
+        /// <response code="404">Caso não encontre a pessoa</response>
+        /// <response code="200">Caso encontre a pessoa: altera a senha para uma Guid</response>
+        /// <response code="401">Caso usuário tente alterar um ID que não seja o dele</response>
         [HttpPut("{id}")]
         [Authorize]
         public ActionResult Put(int id, [FromBody] Pessoa pes)

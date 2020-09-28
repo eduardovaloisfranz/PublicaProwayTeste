@@ -25,8 +25,15 @@ namespace PublicaDesafioBackend.Controllers
         }
 
         // POST api/<JogosController>
+        /// <summary>
+        /// Adiciona Jogo do Usuário. é informado apenas o placar e a regra de negocio é efetuada no Controller
+        /// </summary>
+        /// <param name="jogo">Objeto do Tipo Jogo</param>
+        ///<response code="401">Caso tente adicionar um jogo que o ID do Token é diferente do informado na Requisição do tipo Jogo</response>
+        ///<response code="400">Caso o placar do jogo é invalido</response>
+        ///<response code="202">Caso o jogo seja considerado valido</response>
         [HttpPost]
-        [Authorize]
+        [Authorize]        
         public ActionResult Post([FromBody] Jogo jogo)
         {
             try
@@ -96,6 +103,12 @@ namespace PublicaDesafioBackend.Controllers
                 return BadRequest("Erro ao Adicionar o Placar." + ex.Message);
             }
         }
+        /// <summary>
+        /// Obtem os jogos por Id
+        /// </summary>
+        /// <param name="id">Id da pessoa dona dos Jogos</param>
+        ///<response code="200">Retorna a lista de Jogos do Id informado</response>
+        ///<response code="401">Caso o Id do Token é diferente do id Informado na requisição</response>
         [HttpGet("{id}")]
         [Authorize]
         public ActionResult Get(int id)
@@ -118,7 +131,13 @@ namespace PublicaDesafioBackend.Controllers
 
         }
 
-
+        /// <summary>
+        /// Deleta um Jogo baseado no ID
+        /// </summary>
+        /// <param name="id">ID Do jogo Desejado</param>
+        ///<response code="404">Caso não encontre o jogo</response>
+        ///<response code="200">Registro é apagado</response>
+        ///<response code="400">Caso seja detectado alguma Exceção no código que não foi tratado</response>
         // DELETE api/<JogosController>/5
         [HttpDelete("{id}")]
         [Authorize]
