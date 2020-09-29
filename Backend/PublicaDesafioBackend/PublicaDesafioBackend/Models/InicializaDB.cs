@@ -8,12 +8,24 @@ namespace PublicaDesafioBackend.Models
     public class InicializaDB
     {
         public static void InicializaBanco(ContextoJogo ctx)
-        {         
-            if (ctx.Jogos.Any())
+        {
+            if (ctx.pessoas.Any())
             {
                 return;
             }
-            
+            Pessoa pes = new Pessoa()
+            {
+                NomeCompleto = "Maria Santos",
+                Email = "maria123@gmail.com",
+                Senha = Util.Util.HashPassword("senha123")
+            };
+            ctx.pessoas.Add(pes);
+            ctx.SaveChanges();
+
+            if (ctx.Jogos.Any())
+            {
+                return;
+            }            
             var listaJogos = new Jogo[]
             {
                     new Jogo()
@@ -22,7 +34,8 @@ namespace PublicaDesafioBackend.Models
                     MinimoTemporada = 12,
                     MaximoTemporada = 12,
                     QuebraRecordeMin = 0,
-                    QuebraRecordeMax = 0
+                    QuebraRecordeMax = 0,
+                    PessoaID = 1
                     },
                     new Jogo()
                     {
@@ -30,7 +43,8 @@ namespace PublicaDesafioBackend.Models
                     MinimoTemporada = 12,
                     MaximoTemporada = 24,
                     QuebraRecordeMin = 0,
-                    QuebraRecordeMax = 1
+                    QuebraRecordeMax = 1,
+                    PessoaID = 1
                     },
                     new Jogo()
                     {
@@ -38,7 +52,8 @@ namespace PublicaDesafioBackend.Models
                     MinimoTemporada = 10,
                     MaximoTemporada = 24,
                     QuebraRecordeMin = 1,
-                    QuebraRecordeMax = 1
+                    QuebraRecordeMax = 1,
+                    PessoaID = 1,
                     },
                     new Jogo()
                     {
@@ -46,7 +61,8 @@ namespace PublicaDesafioBackend.Models
                     MinimoTemporada = 10,
                     MaximoTemporada = 24,
                     QuebraRecordeMin = 1,
-                    QuebraRecordeMax = 1
+                    QuebraRecordeMax = 1,
+                    PessoaID = 1
                     }
             };
 

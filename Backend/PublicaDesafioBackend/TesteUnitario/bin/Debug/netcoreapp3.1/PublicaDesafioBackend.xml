@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PublicaDesafioBackend</name>
+    </assembly>
+    <members>
+        <member name="M:PublicaDesafioBackend.Controllers.JogosController.Post(PublicaDesafioBackend.Models.Jogo)">
+             <summary>
+             Adiciona Jogo do Usuário. é informado apenas o placar e a regra de negocio é efetuada no Controller
+             </summary>
+             <param name="jogo">Objeto do Tipo Jogo</param>
+            <response code="401">Caso tente adicionar um jogo que o ID do Token é diferente do informado na Requisição do tipo Jogo</response>
+            <response code="400">Caso o placar do jogo é invalido</response>
+            <response code="202">Caso o jogo seja considerado valido</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.JogosController.Get(System.Int32)">
+             <summary>
+             Obtem os jogos por Id
+             </summary>
+             <param name="id">Id da pessoa dona dos Jogos</param>
+            <response code="200">Retorna a lista de Jogos do Id informado</response>
+            <response code="401">Caso o Id do Token é diferente do id Informado na requisição</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.JogosController.Delete(System.Int32)">
+             <summary>
+             Deleta um Jogo baseado no ID
+             </summary>
+             <param name="id">ID Do jogo Desejado</param>
+            <response code="404">Caso não encontre o jogo</response>
+            <response code="200">Registro é apagado</response>
+            <response code="400">Caso seja detectado alguma Exceção no código que não foi tratado</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.PessoaController.login(PublicaDesafioBackend.Models.Pessoa)">
+            <summary>
+            Efetuar Login, passando dados de Email e Senha        
+            </summary>
+            <param name="user">Objeto do tipo Pessoa</param>
+            <response code="404">Caso não encontre o usuário baseado no Email e Senha</response>
+            <response code="200">Se encontrar o usuário</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.PessoaController.CriarConta(PublicaDesafioBackend.Models.Pessoa)">
+             <summary>
+             Criar conta: Efetua validação se caso o usuário é Valido.
+             </summary>
+             <param name="user">Objeto do Tipo Pessoa</param>
+            <response code="400">Caso o usuário que é passado na requisição é considerado invalido</response>
+            <response code="200">Caso seja valido é adicionado o usuario e retorna uma Mensagem dizendo que a ação foi concluida com exito</response>        
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.PessoaController.changePassword(PublicaDesafioBackend.Models.Pessoa)">
+             <summary>
+             Usuario manda email e recebe em seu email um Token JWT para alterar a sua senha        
+             </summary>
+             <param name="user">Objeto do Tipo Pessoa</param>
+            <response code="404">Caso não encontre o usuário</response>
+            <response code="200">Caso encontre o usuario: retorna mensagem de exito informando sobre que o email que receberá com o Token</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.PessoaController.changePassword(PublicaDesafioBackend.Controllers.TokenPassword)">
+             <summary>
+             Alteração de Senha com o Token recebido no Email.
+             /// </summary>
+             <param name="token">Token JWT</param>
+            <response code="400">Caso o token esteja expirado</response>
+            <response code="200">Altera a senha para uma guid e retorna esta senha na requisição</response>
+        </member>
+        <member name="M:PublicaDesafioBackend.Controllers.PessoaController.Put(System.Int32,PublicaDesafioBackend.Models.Pessoa)">
+            <summary>
+            Altera as informações de usuário
+            </summary>
+            <param name="id">ID Da pessoa que deseja modificar</param>
+            <param name="pes">Objeto do tipo pessoa que será enviado na requisição</param>
+            <response code="404">Caso não encontre a pessoa</response>
+            <response code="200">Caso encontre a pessoa: altera a senha para uma Guid</response>
+            <response code="401">Caso usuário tente alterar um ID que não seja o dele</response>
+        </member>
+    </members>
+</doc>

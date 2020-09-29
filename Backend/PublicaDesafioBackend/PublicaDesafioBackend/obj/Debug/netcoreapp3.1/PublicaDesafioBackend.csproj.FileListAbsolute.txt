@@ -63,3 +63,4 @@ C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\PublicaDesafioBackend.xml
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\obj\Debug\netcoreapp3.1\PublicaDesafioBackend.xml
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll

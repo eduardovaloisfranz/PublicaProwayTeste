@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "akLQeoJaP+PnZ6xFr5Eumep9Jv8zR+EitOlQ96shAMDqdgY4f8HOIkB7y1YO8WzoVnXDFlC5iRx7fJU+zr39Mg==",
+  "dgSpecHash": "CLPMHOgVi2vSXWxsdDKsNffR+zpgEormh1rDpkPNSbx+/Uqr0/J+lN6R4ZP/PeekMpt6iA0qw6MiHL9Js9RMUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\duduf\\Documents\\GitHub\\PublicaProwayTeste\\Backend\\PublicaDesafioBackend\\PublicaDesafioBackend\\PublicaDesafioBackend.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.8\\microsoft.entityframeworkcore.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.8\\microsoft.entityframeworkcore.analyzers.3.1.8.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.8\\microsoft.entityframeworkcore.design.3.1.8.nupkg.sha512",
+    "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\3.1.0\\microsoft.entityframeworkcore.inmemory.3.1.0.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.8\\microsoft.entityframeworkcore.relational.3.1.8.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.relational.design\\1.1.1\\microsoft.entityframeworkcore.relational.design.1.1.1.nupkg.sha512",
     "C:\\Users\\duduf\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.8\\microsoft.entityframeworkcore.tools.3.1.8.nupkg.sha512",

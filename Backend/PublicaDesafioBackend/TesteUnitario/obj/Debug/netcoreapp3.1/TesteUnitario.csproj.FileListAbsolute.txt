@@ -130,3 +130,12 @@ C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\obj\Debug\netcoreapp3.1\TesteUnitario.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\obj\Debug\netcoreapp3.1\TesteUnitario.pdb
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\obj\Debug\netcoreapp3.1\TesteUnitario.genruntimeconfig.cache
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Documentation\docfx.json
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Documentation\_site\manifest.json
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Documentation\_site\search-stopwords.json
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\TesteUnitario\bin\Debug\netcoreapp3.1\PublicaDesafioBackend.xml
