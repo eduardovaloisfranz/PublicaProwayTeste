@@ -32,13 +32,9 @@ dentro dela digite estes comandos na linha de comando.
 
 3) dotnet ef database update
 
-3)dotnet run --project PublicaDesafioBackend.csproj
+4)dotnet run --project PublicaDesafioBackend.csproj
 
 aparecerá uma mensagem de que aplicação estará rodando na porta 5000.
-
-2)add-migration inicio
-
-3)update-database 
 
 e então modificar o arquivo services.js que se encontra /Frontend/publica-desafio/src/services.js
 alterar o localhost:44372 para 5001
