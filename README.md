@@ -18,9 +18,7 @@ Como utilizar a aplicação:
 2) Abrir console do Nuget e digitar os seguintes comandos
 3) add-migration inicio
 4) update-database
-
 ![Image](https://i.gyazo.com/5d067b71795d328fa47ac13e562f9dd0.png)
-
 assim criará o Banco de Dados e suas tabelas.
 Backend ja é funcional.
 5) Compile o Projeto para estar disponível os EndPoints da Aplicação
