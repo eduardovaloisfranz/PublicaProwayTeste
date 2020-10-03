@@ -40,7 +40,7 @@ dentro dela digite estes comandos na linha de comando.
 
 aparecerá uma mensagem de que aplicação estará rodando na porta 5001.
 
-abra uma aba no navegador no localhost:5000 e confira se foi exibido a documentação gerada pelo Swagger
+abra uma aba no navegador no localhost:5001 e confira se foi exibido a documentação gerada pelo Swagger
 ![Image](https://i.gyazo.com/5e8a1d0a4b619b6e2dd1e4734cdf85a7.png)
 
 e então modificar o arquivo services.js que se encontra /Frontend/publica-desafio/src/services.js
