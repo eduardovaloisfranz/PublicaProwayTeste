@@ -93,9 +93,9 @@ namespace PublicaDesafioBackend.Util
 
         private async static Task Execute(string Destinatario, string CorpoEmail, string Assunto)
         {
-            var apiKey = "";
+            var apiKey = "====INSERIR API SENDGRID======";
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("dudufranz13@gmail.com", "Desafio Pública");
+            var from = new EmailAddress("eduardo_franz@estudante.sc.senai.br", "Desafio Pública");
             var subject = Assunto;
             var to = new EmailAddress(Destinatario, "");
             var plainTextContent = CorpoEmail;
