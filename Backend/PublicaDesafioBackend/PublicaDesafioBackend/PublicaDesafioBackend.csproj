@@ -15,6 +15,10 @@
     <Compile Remove="Migrations\20200921204053_updatedatabase.Designer.cs" />
     <Compile Remove="Migrations\20200921204156_inicio.cs" />
     <Compile Remove="Migrations\20200921204156_inicio.Designer.cs" />
+    <Compile Remove="Migrations\20200929232827_Inicio.cs" />
+    <Compile Remove="Migrations\20200929232827_Inicio.Designer.cs" />
+    <Compile Remove="Migrations\20201003200424_inicio.cs" />
+    <Compile Remove="Migrations\20201003200424_inicio.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +37,10 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 	<PropertyGroup>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
