@@ -8,8 +8,8 @@ using PublicaDesafioBackend.Models;
 namespace PublicaDesafioBackend.Migrations
 {
     [DbContext(typeof(ContextoJogo))]
-    [Migration("20200921204551_inicio")]
-    partial class inicio
+    [Migration("20200929232827_Inicio")]
+    partial class Inicio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,7 +74,7 @@ namespace PublicaDesafioBackend.Migrations
 
             modelBuilder.Entity("PublicaDesafioBackend.Models.Jogo", b =>
                 {
-                    b.HasOne("PublicaDesafioBackend.Models.Pessoa", "Pessoa")
+                    b.HasOne("PublicaDesafioBackend.Models.Pessoa", null)
                         .WithMany("Jogos")
                         .HasForeignKey("PessoaID")
                         .OnDelete(DeleteBehavior.Cascade)

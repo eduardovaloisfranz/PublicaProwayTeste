@@ -58,7 +58,7 @@ namespace PublicaDesafioBackend
             });
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Empresa X", Version = "v1", });
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Documentação Api", Version = "v1", });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

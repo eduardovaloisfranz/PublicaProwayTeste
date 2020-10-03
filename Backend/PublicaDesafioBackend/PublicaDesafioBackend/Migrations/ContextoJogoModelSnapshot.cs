@@ -72,7 +72,7 @@ namespace PublicaDesafioBackend.Migrations
 
             modelBuilder.Entity("PublicaDesafioBackend.Models.Jogo", b =>
                 {
-                    b.HasOne("PublicaDesafioBackend.Models.Pessoa", "Pessoa")
+                    b.HasOne("PublicaDesafioBackend.Models.Pessoa", null)
                         .WithMany("Jogos")
                         .HasForeignKey("PessoaID")
                         .OnDelete(DeleteBehavior.Cascade)

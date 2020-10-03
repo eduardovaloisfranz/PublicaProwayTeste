@@ -77,18 +77,27 @@ export default {
       }
     },    
     emailIsValido() {
-      if (this.user.email.length < 5 || this.user.email.length > 30) {
+      if (this.user.email.length < 5 || this.user.email.length > 50) {
         return false;
       } else {
         return true;
       }
+
+      },
+      senhaIsValida(){
+        if(this.user.senha.length < 3) {
+          return false;
+        }else{
+          return true;
+        }
     },    
   },
   computed: {
     validarLogin() {
       if (
         !this.nomeIsValido() ||         
-        !this.emailIsValido() 
+        !this.emailIsValido() ||
+        !this.senhaIsValida()
         
       ) {        
         return true;

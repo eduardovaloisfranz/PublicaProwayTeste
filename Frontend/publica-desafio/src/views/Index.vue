@@ -315,7 +315,7 @@ export default {
     },
         emailIsValido() {
       if (this.user.email != undefined) {
-        return this.user.email.includes("@") && this.user.email.includes(".com")
+        return this.user.email.includes("@") && this.user.email.length > 4
           ? true
           : false;
       }
@@ -330,7 +330,7 @@ export default {
     },
      nomeUserIsValido() {
       if (this.user.nomeCompleto != undefined) {
-        return this.user.nomeCompleto.length > 3 && this.user.nomeCompleto.length < 20
+        return this.user.nomeCompleto.length > 3 && this.user.nomeCompleto.length < 50
           ? true
           : false;
       } else {

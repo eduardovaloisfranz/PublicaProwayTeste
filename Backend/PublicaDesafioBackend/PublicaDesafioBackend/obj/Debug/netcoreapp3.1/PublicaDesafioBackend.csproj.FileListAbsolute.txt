@@ -52,8 +52,6 @@ C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\SendGrid.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Documentation\docfx.json
-C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Documentation\_site\manifest.json
-C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Documentation\_site\search-stopwords.json
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\duduf\Documents\GitHub\PublicaProwayTeste\Backend\PublicaDesafioBackend\PublicaDesafioBackend\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
