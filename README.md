@@ -78,3 +78,6 @@ Como recuperar a Senha.
 ![Image](https://i.gyazo.com/7ed8e57c50a73db204b470c958222d55.png)
 
 
+Extra:
+Print gerenciador de Testes Visual Studio 2019
+![Image](https://i.gyazo.com/623630affd27cf304a192c16af849c73.png)
